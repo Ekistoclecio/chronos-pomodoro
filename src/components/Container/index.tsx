@@ -5,6 +5,7 @@ type ContainerProps<E extends React.ElementType = "div"> = {
   as?: E;
   className?: string;
   noBackground?: boolean;
+  noPadding?: boolean;
 } & React.ComponentPropsWithoutRef<E>;
 
 export function Container<E extends React.ElementType = "div">({
@@ -12,6 +13,7 @@ export function Container<E extends React.ElementType = "div">({
   className,
   children,
   noBackground,
+  noPadding,
   ...rest
 }: ContainerProps<E>) {
   const Component = as || "div";
@@ -20,6 +22,7 @@ export function Container<E extends React.ElementType = "div">({
       className={twMerge(
         "p-4 bg-white rounded shadow-sm",
         noBackground && "bg-transparent",
+        noPadding && "p-0",
         className
       )}
       {...rest}
